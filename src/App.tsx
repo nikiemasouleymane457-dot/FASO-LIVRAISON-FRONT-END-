@@ -3,8 +3,8 @@ import { useState } from 'react';
 function App() {
   const [userType, setUserType] = useState<'client' | 'delivery' | 'transport'>('client');
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
+    Name: '',
+    surName: '',
     email: '',
     password: '',
     phone: '',
@@ -30,16 +30,16 @@ function App() {
     if (userType === 'client') {
       endpoint = '/api/v1/auth/register/client';
       payload = {
-        firstName: formData.firstName,
-        lastName: formData.lastName,
+        Name: formData.Name,
+        surName: formData.surName,
         email: formData.email,
         password: formData.password
       };
     } else if (userType === 'delivery') {
       endpoint = '/api/v1/auth/register/delivery';
       payload = {
-        firstName: formData.firstName,
-        lastName: formData.lastName,
+        Name: formData.Name,
+        surName: formData.surName,
         email: formData.email,
         password: formData.password,
         phone: formData.phone,
@@ -65,7 +65,7 @@ function App() {
       if (response.ok) {
         setMessage('✅ Inscription réussie !');
         setFormData({
-          firstName: '', lastName: '', email: '', password: '', phone: '', familyAddress: '',
+        Name: '', surName: '', email: '', password: '', phone: '', familyAddress: '',
           companyName: '', contactPhone: '', routesAvailable: ''
         });
       } else {
@@ -118,8 +118,8 @@ function App() {
       <form onSubmit={handleSubmit}>
         {(userType === 'client' || userType === 'delivery') && (
           <>
-            <input name="firstName" placeholder="Prénom" value={formData.firstName} onChange={handleChange} required style={{ display: 'block', width: '100%', padding: '10px', margin: '8px 0' }} />
-            <input name="lastName" placeholder="Nom" value={formData.lastName} onChange={handleChange} required style={{ display: 'block', width: '100%', padding: '10px', margin: '8px 0' }} />
+            <input name="Name" placeholder="Prénom" value={formData.Name} onChange={handleChange} required style={{ display: 'block', width: '100%', padding: '10px', margin: '8px 0' }} />
+            <input name="surName" placeholder="Nom" value={formData.surName} onChange={handleChange} required style={{ display: 'block', width: '100%', padding: '10px', margin: '8px 0' }} />
             <input name="email" type="email" placeholder="Email" value={formData.email} onChange={handleChange} required style={{ display: 'block', width: '100%', padding: '10px', margin: '8px 0' }} />
             <input name="password" type="password" placeholder="Mot de passe" value={formData.password} onChange={handleChange} required style={{ display: 'block', width: '100%', padding: '10px', margin: '8px 0' }} />
           </>
